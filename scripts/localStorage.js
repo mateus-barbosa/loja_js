@@ -4,11 +4,8 @@ export default class LocalStorage {
   }
 
   static loadingLocalStorage = (key) => {
-    let aux = JSON.parse(localStorage.getItem(key))
-    let data
-    if (aux != null) {
-      data = aux
-    } else {
+    let data = JSON.parse(localStorage.getItem(key))
+    if (data == null) {
       data = []
     }
     return data

@@ -25,12 +25,13 @@ export default class Carrinho {
 
   static addItemCarrinho = (id) => {
     const carrinho = LocalStorage.loadingLocalStorage('Cart')
+    console.log(id)
     if (carrinho.find(e => e.id == id) === undefined) {
       carrinho.push({id: id, qtd: 1})
     } else {
-      carrinho.find(e => e.id == listaProdutos[id].id).qtd += 1
+      carrinho.find(e => e.id == id).qtd += 1
       this.testaCarrinho
     }
-    LocalStorage.savingLocalStorage('Cart', JSON.stringify(carrinho))
+    LocalStorage.savingLocalStorage('Cart', carrinho)
   }
 }
