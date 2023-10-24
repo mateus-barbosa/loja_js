@@ -15,11 +15,32 @@ export default class Carrinho {
     }
   }
 
-  static mostraCarrinho = (result) => {
-    for (const campo in result) {
-      if(document.querySelector('#' + campo)) {
-        document.querySelector('#' + campo).value = result[campo]
-      }
+  static mostraCarrinho = () => {
+    const conteudoCarrinho = document.querySelector('.conteudoModal-carrinho')
+    const pedido = LocalStorage.loadingLocalStorage('Cart')
+    for (let i = 0; i < pedido.length; i++) {
+      conteudoCarrinho.innerHTML += 
+      `
+      <ul id="${pedido[i].id}" class="item">
+        <li>${pedido[i].id}</li>
+        <ul>
+          <li>Quantidade: ${pedido[i].qtd}</li>
+          <li><input class='add' type='button' value='+'></li>
+          <li><input class='sub' type='button' value='-'></li>
+          <li>Valor total: ${this.ajustarMoeda(listaProdutos[i].value*pedido)}</li>
+        </ul>
+      </ul>
+      `
+
+      document.querySelectorAll('.item').forEach(item => {
+        item.querySelector('.add').addEventListener('click', () => {
+          this.addItemCarrinho(item.id)
+        }) 
+        item.querySelector('.sub').addEventListener('click', () => {
+          this.subItemCarrinho(item.id)
+
+        })
+      })
     }
   }
 
@@ -31,6 +52,15 @@ export default class Carrinho {
     } else {
       carrinho.find(e => e.id == id).qtd += 1
       this.testaCarrinho
+    }
+    LocalStorage.savingLocalStorage('Cart', carrinho)
+  }
+
+  static subItemCarrinho = (id) => {
+    const carrinho = LocalStorage.loadingLocalStorage('Cart')
+    carrinho.find(e => e.id == id).qtd -= 1
+    if (carrinho.find(e => e.id == id).qtd == 0) {
+      carrinho = carrinho.filter(e => e.id != id)
     }
     LocalStorage.savingLocalStorage('Cart', carrinho)
   }

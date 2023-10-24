@@ -24,3 +24,5 @@ for(let i = 0; i < adicionarItem.length; i++) {
     Carrinho.addItemCarrinho(i)
   })
 }
+
+Carrinho.mostraCarrinho()
