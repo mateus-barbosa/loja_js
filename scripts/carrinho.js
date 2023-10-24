@@ -18,6 +18,7 @@ export default class Carrinho {
   static mostraCarrinho = () => {
     const conteudoCarrinho = document.querySelector('.conteudoModal-carrinho')
     const pedido = LocalStorage.loadingLocalStorage('Cart')
+    conteudoCarrinho.innerHTML = '' 
     for (let i = 0; i < pedido.length; i++) {
       conteudoCarrinho.innerHTML += 
       `
@@ -27,7 +28,7 @@ export default class Carrinho {
           <li>Quantidade: ${pedido[i].qtd}</li>
           <li><input class='add' type='button' value='+'></li>
           <li><input class='sub' type='button' value='-'></li>
-          <li>Valor total: ${this.ajustarMoeda(listaProdutos[i].value*pedido)}</li>
+          <li>Valor total: ${this.ajustarMoeda(listaProdutos[i].value*pedido[i].qtd)}</li>
         </ul>
       </ul>
       `
@@ -38,7 +39,6 @@ export default class Carrinho {
         }) 
         item.querySelector('.sub').addEventListener('click', () => {
           this.subItemCarrinho(item.id)
-
         })
       })
     }
@@ -54,8 +54,9 @@ export default class Carrinho {
       this.testaCarrinho
     }
     LocalStorage.savingLocalStorage('Cart', carrinho)
+    this.mostraCarrinho()
   }
-
+  
   static subItemCarrinho = (id) => {
     const carrinho = LocalStorage.loadingLocalStorage('Cart')
     carrinho.find(e => e.id == id).qtd -= 1
@@ -63,6 +64,7 @@ export default class Carrinho {
       carrinho = carrinho.filter(e => e.id != id)
     }
     LocalStorage.savingLocalStorage('Cart', carrinho)
+    this.mostraCarrinho()
   }
 
   static ajustarMoeda = (numero) => {
