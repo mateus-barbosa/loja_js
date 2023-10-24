@@ -1,31 +1,31 @@
-function setProducts() {
-  let productList = [];
-  let product = {
+export const setProdutos = () => {
+  let produtoList = [];
+  let produto = {
     id: 1,
     description: "lorem",
     value: 33,
     qtd: 10,
     url: '',
   }
-  productList.push(product)
+  produtoList.push(produto)
 
-  product = {
+  produto = {
     id: 2,
-    description: "lorem",
+    description: "lorem2",
     value: 66,
     qtd: 20,
     url: '',
   }
-  productList.push(product)
+  produtoList.push(produto)
 
-  product = {
+  produto = {
     id: 3,
-    description: "lorem",
+    description: "lorem3",
     value: 99,
     qtd: 30,
     url: '',
   }
-  productList.push(product)
+  produtoList.push(produto)
 
-  return productList
+  return produtoList
 }

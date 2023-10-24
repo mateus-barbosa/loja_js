@@ -1,6 +1,18 @@
-import LocalStorage from "./localStorage";
+import LocalStorage from "./localStorage.js";
+import { setProdutos } from "./listaProdutos.js";
+import Carrinho from "./carrinho.js";
 
-function cart() {
-  const cartContent = LocalStorage.loadingLocalStorage('Cart');
+const tableBody = document.querySelector('tbody')
 
+const listaProdutos = setProdutos();
+for (let i = 0; i < listaProdutos.length; i++) {
+  tableBody.innerHTML += 
+  `
+  <tr id="${listaProdutos[i].id}">
+      <td><img src="${listaProdutos[i].url}" class="image" width="180px"></td>
+      <td class="desc">${listaProdutos[i].description}</td>
+      <td class="valor">${listaProdutos[i].value}</td>
+      <td><input class="somar" type="button" value="+"></td>
+  </tr>
+  `
 }
