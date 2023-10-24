@@ -34,4 +34,11 @@ export default class Carrinho {
     }
     LocalStorage.savingLocalStorage('Cart', carrinho)
   }
+
+  static ajustarMoeda = (numero) => {
+    return new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL"
+    }).format(numero)
+  }
 }

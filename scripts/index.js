@@ -11,7 +11,7 @@ for (let i = 0; i < listaProdutos.length; i++) {
   <tr id="a${listaProdutos[i].id}">
       <td><img src="${listaProdutos[i].url}" class="image" width="180px"></td>
       <td class="desc">${listaProdutos[i].description}</td>
-      <td class="valor">${listaProdutos[i].value}</td>
+      <td class="valor">${Carrinho.ajustarMoeda(listaProdutos[i].value)}</td>
       <td><input class="somar" type="button" value="+"></td>
   </tr>
   `
