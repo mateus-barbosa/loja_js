@@ -20,15 +20,17 @@ export default class Carrinho {
     const pedido = LocalStorage.loadingLocalStorage('Cart')
     conteudoCarrinho.innerHTML = '' 
     for (let i = 0; i < pedido.length; i++) {
+      const produto = listaProdutos.find(e => e.id == pedido[i].id)
+      console.log(produto)
       conteudoCarrinho.innerHTML += 
       `
-      <ul id="${pedido[i].id}" class="item">
-        <li>${pedido[i].id}</li>
+      <ul id="${produto.id}" class="item">
+        <li>${produto.description}</li>
         <ul>
           <li>Quantidade: ${pedido[i].qtd}</li>
           <li><input class='add' type='button' value='+'></li>
           <li><input class='sub' type='button' value='-'></li>
-          <li>Valor total: ${this.ajustarMoeda(listaProdutos[i].value*pedido[i].qtd)}</li>
+          <li>Valor total: ${this.ajustarMoeda(produto.value*pedido[i].qtd)}</li>
         </ul>
       </ul>
       `
@@ -60,10 +62,12 @@ export default class Carrinho {
   static subItemCarrinho = (id) => {
     const carrinho = LocalStorage.loadingLocalStorage('Cart')
     carrinho.find(e => e.id == id).qtd -= 1
+    let indexElement 
     if (carrinho.find(e => e.id == id).qtd == 0) {
-      carrinho = carrinho.filter(e => e.id != id)
+      console.log(indexElement)
+      indexElement = carrinho.filter(e => e.id != id)
     }
-    LocalStorage.savingLocalStorage('Cart', carrinho)
+    LocalStorage.savingLocalStorage('Cart', indexElement)
     this.mostraCarrinho()
   }
 

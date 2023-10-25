@@ -27,5 +27,14 @@ export const setProdutos = () => {
   }
   produtoList.push(produto)
 
+  produto = {
+    id: 4,
+    description: "lorem4",
+    value: 109,
+    qtd: 40,
+    url: '',
+  }
+  produtoList.push(produto)
+
   return produtoList
 }
