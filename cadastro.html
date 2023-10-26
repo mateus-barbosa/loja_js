@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro</title>
+</head>
+<body>
+  <form>
+    <label for="nome">Nome: </label>
+    <input type="text" class="formInput" name="nome" id="nome" required>
+    <br>
+    <label for="email">Email: </label>
+    <input type="email" class="formInput" name="email" id="email" required>
+    <br>
+    <label for="senha">Senha: </label>
+    <input type="password" name="senha" class="formInput" id="senha" required minlength="8">
+    <input id="mostrarSenha" type="button" value="OLHO">
+    <br>
+    <input class="cadastrar" type="submit" value="Cadastrar">
+  </form>
+</body>
+<script type="module" src="scripts/cadastro.js"></script>
+</html>

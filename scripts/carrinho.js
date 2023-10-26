@@ -65,7 +65,7 @@ export default class Carrinho {
     let indexElement
     if (carrinho.find(e => e.id == id).qtd == 0) {
       indexElement = carrinho.filter(e => e.id != id)
-      
+
       LocalStorage.savingLocalStorage('Cart', indexElement)
       this.mostraCarrinho()
       return
