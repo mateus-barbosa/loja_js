@@ -62,12 +62,15 @@ export default class Carrinho {
   static subItemCarrinho = (id) => {
     const carrinho = LocalStorage.loadingLocalStorage('Cart')
     carrinho.find(e => e.id == id).qtd -= 1
-    let indexElement 
+    let indexElement
     if (carrinho.find(e => e.id == id).qtd == 0) {
-      console.log(indexElement)
       indexElement = carrinho.filter(e => e.id != id)
+      
+      LocalStorage.savingLocalStorage('Cart', indexElement)
+      this.mostraCarrinho()
+      return
     }
-    LocalStorage.savingLocalStorage('Cart', indexElement)
+    LocalStorage.savingLocalStorage('Cart', carrinho)
     this.mostraCarrinho()
   }
 
