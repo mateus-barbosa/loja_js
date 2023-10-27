@@ -5,7 +5,6 @@ export default class Cadastro {
   static CadastrarUsuario = () => {
     const usuarios = LocalStorage.loadingLocalStorage('Clientes')
     
-    LocalStorage.loadingLocalStorage('Clientes')
     const formInput = document.querySelectorAll('.formInput')
     const nome = formInput[0].value
     const email = formInput[1].value

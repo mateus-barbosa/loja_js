@@ -10,13 +10,25 @@
     <nav>
       <ul>
         <li><a href="#">Carrinho</a></li>
-        <li><a href="cadastro.html">Cadastro</a></li>
+        <li><a class="usuerBtn" href="cadastro.html">Cadastro</a></li>
       </ul>
     </nav>
     <header>
       <h2>Barbosa's Store</h2>
     </header>
     <main>
+      <section class="login">
+        <form>
+          <label for="email">Email: </label>
+          <input type="email" name="email" class="inputLogin" placeholder="email@dominio.com">
+          <br>
+          <label for="senha">Senha: </label>
+          <input type="password" name="senha" class="inputLogin">
+          <br>
+          <a href="./cadastro.html">Não é Cliente? Cadastre-se</a>
+          <input type="submit" value="Login" class="logar">
+        </form>
+      </section>
       <table>
         <thead>
           <th></th>
@@ -37,5 +49,6 @@
       </section>
     </main>
 </body>
+<script src="./scripts/login.js" type="module"></script>
 <script src="./scripts/index.js" type="module"></script>
 </html>

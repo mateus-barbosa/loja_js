@@ -4,8 +4,8 @@ import Carrinho from "./carrinho.js";
 
 const tableBody = document.querySelector('tbody')
 
-if(LocalStorage.loadingLocalStorage('Cart').length == 0) {
-  LocalStorage.savingLocalStorage('Cart', [])
+if(LocalStorage.loadingLocalStorage('Carrinho').length == 0) {
+  LocalStorage.savingLocalStorage('Carrinho', [])
 }
 
 const listaProdutos = setProdutos();
