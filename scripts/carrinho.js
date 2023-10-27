@@ -23,18 +23,18 @@ export default class Carrinho {
     const conteudoCarrinho = document.querySelector('.conteudoModal-carrinho')
     const pedido = LocalStorage.loadingLocalStorage('Carrinho')
     conteudoCarrinho.innerHTML = '' 
-    for (let i = 0; i < pedido.length; i++) {
-      const produto = listaProdutos.find(e => e.id == pedido[i].id)
+    for (const element of pedido) {
+      const produto = listaProdutos.find(e => e.id == element.id)
       console.log(produto)
       conteudoCarrinho.innerHTML += 
       `
       <ul id="${produto.id}" class="item">
         <li>${produto.description}</li>
         <ul>
-          <li>Quantidade: ${pedido[i].qtd}</li>
+          <li>Quantidade: ${element.qtd}</li>
           <li><input id="${produto.id}" class='add' type='button' value='+'></li>
           <li><input class='sub' type='button' value='-'></li>
-          <li>Valor total: ${this.ajustarMoeda(produto.value*pedido[i].qtd)}</li>
+          <li>Valor total: ${this.ajustarMoeda(produto.value*element.qtd)}</li>
         </ul>
       </ul>
       `

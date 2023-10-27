@@ -9,24 +9,24 @@ if(LocalStorage.loadingLocalStorage('Carrinho').length == 0) {
 }
 
 const listaProdutos = setProdutos();
-for (let i = 0; i < listaProdutos.length; i++) {
+for (const element of listaProdutos) {
   tableBody.innerHTML += 
   `
   <tr>
-      <td><img src="${listaProdutos[i].url}" class="image" width="180px"></td>
-      <td class="desc">${listaProdutos[i].description}</td>
-      <td class="valor">${Carrinho.ajustarMoeda(listaProdutos[i].value)}</td>
-      <td><input id="${listaProdutos[i].id}" class="add" type="button" value="+"></td>
+      <td><img src="${element.url}" class="image" width="180px"></td>
+      <td class="desc">${element.description}</td>
+      <td class="valor">${Carrinho.ajustarMoeda(element.value)}</td>
+      <td><input id="${element.id}" class="add" type="button" value="+"></td>
   </tr>
   `
-  Carrinho.testaCarrinho(listaProdutos[i].id)
+  Carrinho.testaCarrinho(element.id)
 }
 
 const adicionarItem = document.querySelectorAll('.add')
 
-for(let i = 0; i < adicionarItem.length; i++) {
-  adicionarItem[i].addEventListener('click', () => {
-    Carrinho.addItemCarrinho(adicionarItem[i].id)
+for(const element of adicionarItem) {
+  element.addEventListener('click', () => {
+    Carrinho.addItemCarrinho(element.id)
   })
 }
 
