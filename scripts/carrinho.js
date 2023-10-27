@@ -5,13 +5,17 @@ let listaProdutos = setProdutos();
 
 export default class Carrinho {
 
-  static testaCarrinho() {
+  static testaCarrinho(id) {
     const conteudoCarrinho = LocalStorage.loadingLocalStorage('Carrinho');
-    for(let i = 0; i < setProdutos.length; i++) {
-      if(conteudoCarrinho.find(e => e.id == setProdutos[i].id)
-        && conteudoCarrinho.find(e => e.id == setProdutos[i].id).qtd >= setProdutos[i].qtd-1){
-        add[i].disabled = true;
-      }
+    if(conteudoCarrinho.find(e => e.id == id)
+      && conteudoCarrinho.find(e => e.id == id).qtd >= listaProdutos.find(e => e.id == id).qtd){
+      document.querySelectorAll(`.add[id="${id}"]`).forEach(item => {
+        item.disabled = true
+      }) 
+    } else {
+      document.querySelectorAll(`.add[id="${id}"]`).forEach(item => {
+        item.disabled = false
+      }) 
     }
   }
 
@@ -28,12 +32,13 @@ export default class Carrinho {
         <li>${produto.description}</li>
         <ul>
           <li>Quantidade: ${pedido[i].qtd}</li>
-          <li><input class='add' type='button' value='+'></li>
+          <li><input id="${produto.id}" class='add' type='button' value='+'></li>
           <li><input class='sub' type='button' value='-'></li>
           <li>Valor total: ${this.ajustarMoeda(produto.value*pedido[i].qtd)}</li>
         </ul>
       </ul>
       `
+      this.testaCarrinho(produto.id)
 
       document.querySelectorAll('.item').forEach(item => {
         item.querySelector('.add').addEventListener('click', () => {
@@ -53,7 +58,7 @@ export default class Carrinho {
       carrinho.push({id: id, qtd: 1})
     } else {
       carrinho.find(e => e.id == id).qtd += 1
-      this.testaCarrinho
+      this.testaCarrinho(id)
     }
     LocalStorage.savingLocalStorage('Carrinho', carrinho)
     this.mostraCarrinho()

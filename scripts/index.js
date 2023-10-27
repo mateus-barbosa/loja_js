@@ -16,12 +16,13 @@ for (let i = 0; i < listaProdutos.length; i++) {
       <td><img src="${listaProdutos[i].url}" class="image" width="180px"></td>
       <td class="desc">${listaProdutos[i].description}</td>
       <td class="valor">${Carrinho.ajustarMoeda(listaProdutos[i].value)}</td>
-      <td><input id="${listaProdutos[i].id}" class="somar" type="button" value="+"></td>
+      <td><input id="${listaProdutos[i].id}" class="add" type="button" value="+"></td>
   </tr>
   `
+  Carrinho.testaCarrinho(listaProdutos[i].id)
 }
 
-const adicionarItem = document.querySelectorAll('.somar')
+const adicionarItem = document.querySelectorAll('.add')
 
 for(let i = 0; i < adicionarItem.length; i++) {
   adicionarItem[i].addEventListener('click', () => {
