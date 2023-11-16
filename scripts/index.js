@@ -1,6 +1,7 @@
-import LocalStorage from "./localStorage.js";
-import { setProdutos } from "./listaProdutos.js";
 import Carrinho from "./carrinho.js";
+import { setProdutos } from "./listaProdutos.js";
+import LocalStorage from "./localStorage.js";
+import Pedido from "./pedidoFuncoes.js";
 
 const tableBody = document.querySelector('tbody')
 
@@ -31,3 +32,12 @@ for(const element of adicionarItem) {
 }
 
 Carrinho.mostraCarrinho()
+
+const finalizar = document.querySelector('#finalizaPedido')
+
+if (finalizar) {
+    finalizar.addEventListener('click', () => {
+        window.location.href = '../pedido.html'
+        Pedido.carregarPedido()
+    })
+}
